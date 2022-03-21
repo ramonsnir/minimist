@@ -71,6 +71,7 @@ module.exports = function (args, opts) {
         for (var i = 0; i < keys.length-1; i++) {
             var key = keys[i];
             if (key === '__proto__') return;
+            if (key === 'constructor' && typeof o[key] === 'function') return;
             if (o[key] === undefined) o[key] = {};
             if (o[key] === Object.prototype || o[key] === Number.prototype
                 || o[key] === String.prototype) o[key] = {};
@@ -80,6 +81,7 @@ module.exports = function (args, opts) {
 
         var key = keys[keys.length - 1];
         if (key === '__proto__') return;
+        if (key === 'constructor' && typeof o[key] === 'function') return;
         if (o === Object.prototype || o === Number.prototype
             || o === String.prototype) o = {};
         if (o === Array.prototype) o = [];
